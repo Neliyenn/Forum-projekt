@@ -1,7 +1,5 @@
 package com.neliyenn.model;
 
-import org.h2.engine.User;
-
 import javax.persistence.*;
 import java.util.Collection;
 

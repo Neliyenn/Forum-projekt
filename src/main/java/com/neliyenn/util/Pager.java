@@ -1,46 +1,74 @@
 package com.neliyenn.util;
 
-import com.neliyenn.model.Post;
-import org.springframework.data.domain.Page;
-
 public class Pager {
 
-    private final Page<Post> posts;
+    private int buttonsToShow = 5;
 
-    public Pager(Page<Post> posts) {
-        this.posts = posts;
+    private int startPage;
+
+    private int endPage;
+
+    public Pager(int totalPages, int currentPage, int buttonsToShow) {
+
+        setButtonsToShow(buttonsToShow);
+
+        int halfPagesToShow = getButtonsToShow() / 2;
+
+        if (totalPages <= getButtonsToShow()) {
+            setStartPage(1);
+            setEndPage(totalPages);
+
+        } else if (currentPage - halfPagesToShow <= 0) {
+            setStartPage(1);
+            setEndPage(getButtonsToShow());
+
+        } else if (currentPage + halfPagesToShow == totalPages) {
+            setStartPage(currentPage - halfPagesToShow);
+            setEndPage(totalPages);
+
+        } else if (currentPage + halfPagesToShow > totalPages) {
+            setStartPage(totalPages - getButtonsToShow() + 1);
+            setEndPage(totalPages);
+
+        } else {
+            setStartPage(currentPage - halfPagesToShow);
+            setEndPage(currentPage + halfPagesToShow);
+        }
+
     }
 
-    public int getPageIndex() {
-        return posts.getNumber() + 1;
+    public int getButtonsToShow() {
+        return buttonsToShow;
     }
 
-    public int getPageSize() {
-        return posts.getSize();
+    public void setButtonsToShow(int buttonsToShow) {
+        if (buttonsToShow % 2 != 0) {
+            this.buttonsToShow = buttonsToShow;
+        } else {
+            throw new IllegalArgumentException("Must be an odd value!");
+        }
     }
 
-    public boolean hasNext() {
-        return posts.hasNext();
+    public int getStartPage() {
+        return startPage;
     }
 
-    public boolean hasPrevious() {
-        return posts.hasPrevious();
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
     }
 
-    public int getTotalPages() {
-        return posts.getTotalPages();
+    public int getEndPage() {
+        return endPage;
     }
 
-    public long getTotalElements() {
-        return posts.getTotalElements();
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
     }
 
-    public Page<Post> getPosts() {
-        return posts;
-    }
-
-    public boolean indexOutOfBounds() {
-        return getPageIndex() < 0 || getPageIndex() > getTotalElements();
+    @Override
+    public String toString() {
+        return "Pager [startPage=" + startPage + ", endPage=" + endPage + "]";
     }
 
 }
+

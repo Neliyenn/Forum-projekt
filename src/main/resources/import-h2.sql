@@ -16,7 +16,7 @@ VALUES
 
 
 --Role
-INSERT INTO ROLE (user_id, role)
+INSERT INTO ROLE (role_id, role)
 VALUES (1, 'ROLE_ADMIN');
 
 INSERT INTO ROLE (role_id, role)
@@ -25,16 +25,16 @@ VALUES (2, 'ROLE_USER');
 
 --Role, Uzytkownicy
 INSERT INTO USER_ROLE (user_id, role_id)
-VALUES (1, 1)
+VALUES (1, 1);
 
 INSERT INTO USER_ROLE (user_id, role_id)
-VALUES (1, 2)
+VALUES (1, 2);
 
 INSERT INTO USER_ROLE (user_id, role_id)
-VALUES (2, 2)
+VALUES (2, 2);
 
 INSERT INTO USER_ROLE (user_id, role_id)
-VALUES (3, 2)
+VALUES (3, 2);
 
 
 --Posty
