@@ -5,82 +5,127 @@ import com.neliyenn.model.User;
 import com.neliyenn.service.PostService;
 import com.neliyenn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class PostController {
 
+    private final PostService postService;
+    private final UserService userService;
+
     @Autowired
-    private PostService postService;
-    @Autowired
-    private UserService userService;
+    public PostController(PostService postService, UserService userService){
+        this.postService = postService;
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/newPost", method = RequestMethod.GET)
-    public ModelAndView newPost(Principal principal) {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = userService.findByUsername(principal.getName());
-        Post post = new Post();
-        post.setUser(user);
-        modelAndView.addObject("post", post);
-        modelAndView.setViewName("postForm");
-        return modelAndView;
+    public String newPost(Principal principal,
+                          Model model) {
+        Optional<User> user = userService.findByUsername(principal.getName());
+
+        if (user.isPresent()) {
+            Post post = new Post();
+            post.setUser(user.get());
+
+            model.addAttribute("post", post);
+
+            return "/postForm";
+        }
+        else {
+            return "/error";
+        }
     }
 
     @RequestMapping(value = "/newPost", method = RequestMethod.POST)
-    public ModelAndView createNewPost(@Valid Post post, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String createNewPost(@Valid Post post,
+                                BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("postForm");
+            return "/postForm";
         } else {
-            postService.savePost(post);
-            modelAndView.setViewName("redirect:/blog/" + post.getUser().getUsername());
+            postService.save(post);
+            return "redirect:/blog/" + post.getUser().getUsername();
         }
-        return modelAndView;
     }
 
-
     @RequestMapping(value = "/editPost/{id}", method = RequestMethod.GET)
-    public ModelAndView editPostWithId(@PathVariable Long id, Principal principal) {
-        ModelAndView modelAndView = new ModelAndView();
-        Post post = postService.findPostForId(id);
+    public String editPostWithId(@PathVariable Long id,
+                                 Principal principal,
+                                 Model model) {
 
-        if (principal == null || !principal.getName().equals(post.getUser().getUsername())) {
-            modelAndView.setViewName("403");
-        }
+        Optional<Post> optionalPost = postService.findForId(id);
 
-        if (post == null) {
-            modelAndView.setViewName("404");
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+
+            if (isPrincipalOwnerOfPost(principal, post)) {
+                model.addAttribute("post", post);
+                return "/postForm";
+            }
+            else {
+                return "/403";
+            }
         }
         else {
-            modelAndView.addObject("post", post);
-            modelAndView.setViewName("postForm");
+            return "/error";
         }
-        return modelAndView;
+    }
+
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
+    public String getPostWithId(@PathVariable Long id,
+                                Principal principal,
+                                Model model) {
+
+        Optional<Post> optionalPost = postService.findForId(id);
+
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+
+            model.addAttribute("post", post);
+            if (isPrincipalOwnerOfPost(principal, post)) {
+                model.addAttribute("username", principal.getName());
+            }
+            return "/post";
+        }
+        else {
+            return "/error";
+        }
     }
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-    public ModelAndView deletePostWithId(@PathVariable Long id, Principal principal) {
-        ModelAndView modelAndView = new ModelAndView();
-        Post post = postService.findPostForId(id);
+    public String deletePostWithId(@PathVariable Long id,
+                                   Principal principal) {
 
-        if (post == null) {
-            modelAndView.setViewName("error");
-        }
-        else if (principal == null || !principal.getName().equals(post.getUser().getUsername())) {
-            modelAndView.setViewName("403");
+        Optional<Post> optionalPost = postService.findForId(id);
+
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+
+            if (isPrincipalOwnerOfPost(principal, post)) {
+                postService.delete(post);
+                return "redirect:/home";
+            }
+            else {
+                return "/403";
+            }
         }
         else {
-            postService.delete(post);
-            modelAndView.setViewName("redirect:/home");
+            return "/error";
         }
-        return modelAndView;
+    }
+
+    private boolean isPrincipalOwnerOfPost(Principal principal, Post post) {
+        return principal != null && principal.getName().equals(post.getUser().getUsername());
     }
 }

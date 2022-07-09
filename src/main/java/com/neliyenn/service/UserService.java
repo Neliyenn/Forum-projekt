@@ -2,11 +2,13 @@ package com.neliyenn.service;
 
 import com.neliyenn.model.User;
 
+import java.util.Optional;
+
 public interface UserService {
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     User saveUser(User user);
 }

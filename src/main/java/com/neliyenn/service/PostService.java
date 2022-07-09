@@ -3,9 +3,8 @@ package com.neliyenn.service;
 import com.neliyenn.model.Post;
 import com.neliyenn.model.User;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Klasa Service dla obiektów domeny {@link Post}
@@ -13,43 +12,21 @@ import java.util.Collection;
  */
 public interface PostService {
 
-    /**
-     * Wyszukuje n najnowszych postów {@link Post}
-     *
-     * @param n
-     * @return - zwraca zbiór {@link Post}
-     */
-    Collection<Post> findNLatestPosts(int n);
-
-    Collection<Post> findNLatestPostsForUser(int n, User user);
-
-    Post findPostForId(Long id);
-
-    Post savePost(Post post);
-
-    Page<Post> findAllPageable(Pageable pageable);
+    Optional<Post> findForId(Long id);
+    Post save(Post post);
 
     /**
      * Wyszukuje {@link Page} i {@link Post} podanego uzytkownika uporzadkowane wg daty
-     *
-     * @param user
-     * @param pageable
-     * @return - zwraca instancje {@link Page}
      */
-    Page<Post> findByUserOrderedByDatePageable(User user, Pageable pageable);
+    Page<Post> findByUserOrderedByDatePageable(User user, int page);
 
     /**
      * Wyszukuje {@link Page} wsrid wszystkich {@link Post}cuporzadkowane wg daty
-     *
-     * @param pageable
-     * @return - zwraca instancje {@link Page}
      */
-    Page<Post> findAllOrderedByDatePageable(Pageable pageable);
+    Page<Post> findAllOrderedByDatePageable(int page);
 
     /**
      * Usuwa {@link Post} z magazynu danych
-     *
-     * @param post - {@link Post} do usuniecia
      */
     void delete(Post post);
 }

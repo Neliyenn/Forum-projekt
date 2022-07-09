@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38528371-0a92-47cc-bf0e-b9d1b39eb72a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/BlogErrorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/DefaultController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/impl/PostServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/impl/PostServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/service/impl/UserServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/neliyenn/util/Pager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/neliyenn/util/Pager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

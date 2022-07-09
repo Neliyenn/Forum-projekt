@@ -4,48 +4,56 @@ import com.neliyenn.model.User;
 import com.neliyenn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView registration() {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
-        return modelAndView;
+    public String registration(Model model) {
+
+        model.addAttribute("user", new User());
+        return "/registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        User userWithEnteredEmailExists = userService.findByEmail(user.getEmail());
+    public String createNewUser(@Valid User user,
+                                BindingResult bindingResult,
+                                Model model) {
 
-        if (userWithEnteredEmailExists != null) {
+        if (userService.findByUsername(user.getUsername()).isPresent()) {
             bindingResult
-                    .rejectValue("email", "error.user",
+                    .rejectValue("username", "error.user",
                             "Użytkownik o takiej nazwie już istnieje");
         }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("registration");
+
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            bindingResult
+                    .rejectValue("email", "error.user",
+                            "Użytkownik o takim mailu już istnieje");
         }
-        else {
+
+        if (!bindingResult.hasErrors()) {
+            //rejestracja pomyslna, nadanie uzytkownkowi roli USER i aktywacja
             userService.saveUser(user);
 
-            modelAndView.addObject("successMessage", "Użytkownik został zarejestrowany");
-            modelAndView.addObject("user", new User());
-            modelAndView.setViewName("registration");
+
+            model.addAttribute("successMessage", "Użytkownik zarejestrowany pomyślnie");
+            model.addAttribute("user", new User());
         }
-        return modelAndView;
+
+        return "/registration";
     }
 }
