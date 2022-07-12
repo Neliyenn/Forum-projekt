@@ -1,5 +1,6 @@
 package com.neliyenn.config;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,19 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-import javax.sql.DataSource;
-
 /**
  * konfiguracja Spring Security
+ * Wyłącza automatyczną konfigurację zabezpieczeń Spring Boot
  */
 @Configuration
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
+    private final AccessDeniedHandler accessDeniedHandler;
 
-    @Autowired
-    DataSource dataSource;
+    final DataSource dataSource;
 
     @Value("${spring.admin.username}")
     private String adminUsername;
@@ -37,6 +35,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
 
+    @Autowired
+    public SpringSecurityConfig(AccessDeniedHandler accessDeniedHandler, DataSource dataSource) {
+        this.accessDeniedHandler = accessDeniedHandler;
+        this.dataSource = dataSource;
+    }
+
     /**
      * konfiguracja HTTPSecurity
      * - rola ADMIN pozwala na dostep do /admin/**
@@ -44,19 +48,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
      * - kazdy moze odwiedzic /, /home, /about, /rejestracja, /error, /blog/**, /post/**, /h2-console/**
      * - pozostale strony wymagaja uwierzytelniania
      * - customowy 403 access denied handler
-     *
-     * @param http
-     * @throws Exception
      */
    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
        http.csrf().disable()
                .authorizeRequests()
-               .antMatchers("/", "/home", "/about", "/registration", "/error", "/blog/**", "/post/**", "/h2-console/**").permitAll()
-               .antMatchers("/admin/**").hasAnyRole("ADMIN")
-               .antMatchers("/user/**", "/newPost/**").hasAnyRole("USER")
-
+               .antMatchers("/home", "/registration", "/error", "/blog/**", "/post/**", "/h2-console/**").permitAll()
+               .antMatchers("/newPost/**", "/commentPost/**", "/createComment/**").hasAnyRole("USER")
                .anyRequest().authenticated()
                .and()
                .formLogin()
@@ -74,9 +73,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     /**
      * Detale uwierzytelniania
-     *
-     * @param auth
-     * @throws Exception
      */
    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -101,8 +97,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     /**
      * Konfiguracja i "return" kodowania hasła BCrypt
-     *
-     * @return
      */
 
    @Bean
