@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container">
+
+    <!-- Post -->
+    <div class="jumbotron">
+
+        <h1 th:text="${post.title}">Tytuł</h1>
+        <div th:text="'Napisane: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' przez '">Napisane przez</div>
+        <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}">Użytkownik</a></div>
+        <h3 th:text="${post.body}">Treść</h3>
+
+        <!-- Pokazuj te przyciski tylko wtedy gdy Użytkownik jest właścicielem posta -->
+        <div sec:authorize="isAuthenticated()" th:if="${username}">
+            <div class="row">
+                <a th:href="@{'/editPost/{id}'(id=${post.id})}" class="col-md-2">
+                    <button type="button" class="btn btn-primary btn-block" th:text="Edytuj">Edytuj</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h2>Komentarze:</h2>
+
+    <!-- Komentarze -->
+    <div class="well" th:each="comment : ${post.comments}">
+        <h3 th:text="${comment.body}">Treść</h3>
+        <div th:text="'Napisane: ' + ${#dates.format(comment.createDate, 'dd-MMM-yyyy')} + ' przez '">
+            Napisane przez
+        </div>
+        <div><a th:text="${comment.user.username}" th:href="@{'/blog/' + ${comment.user.username}}">Użytkownik</a>
+        </div>
+    </div>
+
+    <!-- Przycisk "skomentuj" -->
+    <!-- Tylko jeśli użytkownik jest zalogowany -->
+    <div sec:authorize="isAuthenticated()">
+        <div class="row">
+            <a th:href="@{'/commentPost/{id}'(id=${post.id})}" class="col-md-2">
+                <button type="button" class="btn btn-primary btn-block" th:text="Skomentuj">Skomentuj</button>
+            </a>
+        </div>
+    </div>
+</div>
+<div th:replace="/fragments/footer :: footer"/>
+</body>
+</html>
