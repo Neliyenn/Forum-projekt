@@ -10,8 +10,9 @@
 <div class="container">
 
     <!-- Pokazuj informacje tylko jesli użytkownik zostanie zarejestrowany -->
-    <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}">
+    <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
 
+    <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <form autocomplete="off" action="#" th:action="@{/registration}"
                   th:object="${user}" method="post" role="form">

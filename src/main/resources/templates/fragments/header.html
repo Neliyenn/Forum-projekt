@@ -28,7 +28,7 @@
             <div id="navbar" class="collapse navbar-collapse navbar-right">
                 <!-- wyświetlanie rejestracji tylko wtedy, gdy użytkownik nie jest jeszcze rozpoznany -->
                 <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
-                    <li class="active"><a th:href="@{/registration">Rejestracja</a></li>
+                    <li class="active"><a th:href="@{/registration}">Rejestracja</a></li>
                 </ul>
                 <!-- wyświetlanie logowania tylko wtedy, gdy użytkownik nie jest jeszcze rozpoznany -->
                 <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
