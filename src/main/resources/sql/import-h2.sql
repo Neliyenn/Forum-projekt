@@ -4,7 +4,7 @@ ALTER TABLE POST
 --Uzytkownicy
 INSERT INTO USER (user_id, password, email, username, name, last_name, active)
 VALUES
-   (1, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user1@mail.com', 'user1', 'User', 'Surname1', 1);
+   (1, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user1@gmail.com', 'user1', 'User', 'Surname1', 1);
 
 INSERT INTO USER (user_id, password, email, username, name, last_name, active)
 VALUES
@@ -12,7 +12,7 @@ VALUES
 
 INSERT INTO USER (user_id, password, email, username, name, last_name, active)
 VALUES
-    (3, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user3@mail.com', 'user3', 'User', 'Surname3', 1);
+    (3, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user3@gmail.com', 'user3', 'User', 'Surname3', 1);
 
 
 --Role
@@ -39,51 +39,51 @@ VALUES (3, 2);
 
 --Posty
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (1, 1, 'Title 1',
+VALUES (1, 1, 'Post 1',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (2, 1, 'Title 2',
+VALUES (2, 1, 'Post 2',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (3, 1, 'Title 3',
+VALUES (3, 1, 'Post 3',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (4, 1, 'Title 4',
+VALUES (4, 1, 'Post 4',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (5, 1, 'Title 5',
+VALUES (5, 1, 'Post 5',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (6, 1, 'Title 6',
+VALUES (6, 1, 'Post 6',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (7, 2, 'Title 7',
+VALUES (7, 2, 'Post 7',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (8, 2, 'Title 8',
+VALUES (8, 2, 'Post 8',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (9, 2, 'Title 9',
+VALUES (9, 2, 'Post 9',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (10, 2, 'Title 10',
+VALUES (10, 2, 'Post 10',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (11, 3, 'Title 11',
+VALUES (11, 3, 'Post 11',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 INSERT INTO POST (post_id, user_id, title, body, create_date)
-VALUES (12, 3, 'Title 12',
+VALUES (12, 3, 'Post 12',
         'Lorem ipsum',  CURRENT_TIMESTAMP());
 
 

@@ -3,46 +3,42 @@
 <head>
     <div th:fragment="header-css">
 
-    <title>Forum na blogu</title>
+        <title>Forum</title>
 
-        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-              th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-              rel="stylesheet" media="screen"/>
+        <link href="../../css/bootstrap.min.css"
+              rel="stylesheet" media="screen" type="text/css"/>
 
-        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-                th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+        <script src="../../css/jquery.min.js"></script>
 
-        <link rel="stylesheet" th:href="@{/css/main.css}"
-              href="../../css/main.css"/>
-
+        <link rel="stylesheet" href="/css/main.css" type="text/css"/>
     </div>
 </head>
 <body>
 <div th:fragment="header">
-    <!-- header -->
+    <!-- Nagłówek -->
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" th:href="@{/home}">Forum</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse navbar-right">
-                <!-- wyświetlanie rejestracji tylko wtedy, gdy użytkownik nie jest jeszcze rozpoznany -->
+                <!-- Pokazuj przycisk "Zarejestruj się" tylko w przypadku gdy użytkownik nie jest zalogowany-->
                 <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
-                    <li class="active"><a th:href="@{/registration}">Rejestracja</a></li>
+                    <li class="active"><a th:href="@{/registration}">Zarejestruj się</a></li>
                 </ul>
-                <!-- wyświetlanie logowania tylko wtedy, gdy użytkownik nie jest jeszcze rozpoznany -->
+                <!-- Pokazuj przycisk "Zaloguj się" tylko w przypadku gdy użytkownik nie jest zalogowany -->
                 <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
-                    <li class="active"><a th:href="@{/login}">Logowanie</a></li>
+                    <li class="active"><a th:href="@{/login}">Zaloguj się</a></li>
                 </ul>
-                <!-- wyświetlanie "Moje Forum" tylko wtedy, gdy użytkownik jest zalogowany -->
+                <!-- Pokazuj przycisk "Moje Forum" tylko w przypadku gdy użytkownik jest zalogowany -->
                 <ul class="nav navbar-nav" sec:authorize="hasRole('USER')">
-                    <li class="active"><a th:href="@{'/blog/' + ${#authentication.getName()}}">Moje Forum</a></li>
+                    <li class="active"><a th:href="@{'/blog/' + ${#authentication.getName()}}">Moje forum</a></li>
                 </ul>
-                <!-- wyświetlanie "Nowy Post" tylko wtedy, gdy użytkownik jest zalogowany -->
+                <!-- Pokazuj przycisk "Nowy Post" tylko w przypadku gdy użytkownik jest zalogowany -->
                 <ul class="nav navbar-nav" sec:authorize="hasRole('USER')">
                     <li class="active"><a th:href="@{/newPost}">Nowy Post</a></li>
                 </ul>
-                <!-- wyświetlanie "Wyloguj się" tylko wtedy, gdy użytkownik jest zalogowany -->
+                <!-- Pokazuj przycisk "Wyloguj się" tylko w przypadku gdy użytkownik jest zalogowany -->
                 <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
                     <li class="active"><a th:href="@{/logout}">Wyloguj się</a></li>
                 </ul>

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <div th:replace="/fragments/header :: header-css"/>
+
 </head>
 <body>
 
@@ -9,7 +11,7 @@
 
 <div class="container">
 
-    <!-- Pokazuj informacje tylko jesli użytkownik zostanie zarejestrowany -->
+    <!--Pokazuj tą informację tylko w przypadku, gdy użytkownik został pomyślnie zarejestrowany-->
     <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
 
     <div class="row" style="margin-top:20px">
@@ -20,14 +22,14 @@
                 <div class="form-group">
                     <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                            class="alert alert-danger"></label>
-                    <input type="text" th:field="*{name}" placeholder="Name"
+                    <input type="text" th:field="*{name}" placeholder="Imię"
                            class="form-control input-lg"/>
                 </div>
 
                 <div class="form-group">
                     <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
                            class="alert alert-danger"></label>
-                    <input type="text" th:field="*{lastName}" placeholder="Last Name"
+                    <input type="text" th:field="*{lastName}" placeholder="Nazwisko"
                            class="form-control input-lg"/>
                 </div>
 
@@ -41,26 +43,27 @@
                 <div class="form-group">
                     <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                            class="alert alert-danger"></label>
-                    <input type="password" th:field="*{password}" placeholder="Password"
+                    <input type="password" th:field="*{password}" placeholder="Hasło"
                            class="form-control input-lg"/>
                 </div>
 
                 <div class="form-group">
                     <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                            class="alert alert-danger"></label>
-                    <input type="text" th:field="*{username}" placeholder="Username"
+                    <input type="text" th:field="*{username}" placeholder="Login"
                            class="form-control input-lg"/>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-3" style="float: none; margin: 0 auto;">
-                        <input type="submit" class="btn btn-primary btn-block" value="Submit"/>
+                        <input type="submit" class="btn btn-primary btn-block" value="Zarejestruj"/>
                     </div>
                 </div>
 
             </form>
         </div>
     </div>
+
 </div>
 
 <div th:replace="/fragments/footer :: footer"/>

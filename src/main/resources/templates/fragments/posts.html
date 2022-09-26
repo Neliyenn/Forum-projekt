@@ -4,10 +4,10 @@
 <body>
 <div th:fragment="posts">
 
-    <div class="starter-template panel" th:each="post : ${pager.post}">
+    <div class="starter-template panel" th:each="post : ${pager.posts}">
         <div class="panel-heading">
             <h1><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}">Tytuł</a></h1>
-            <div th:text="'Created: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' by '">
+            <div th:text="'Utworzone: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' autor '">
                 Autor
             </div>
             <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}">Użytkownik</a>
@@ -16,6 +16,7 @@
         <h3 class="panel-body" th:text="${post.body}">Treść</h3>
         <br></br>
     </div>
+
 </div>
 </body>
 </html>

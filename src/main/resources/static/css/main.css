@@ -1,5 +1,5 @@
 h1 {
-    color: #8FBC8F;
+    color: #FF99CC;
 }
 
 h2 {
@@ -10,17 +10,17 @@ footer {
     margin-top: 60px;
 }
 
-.validation-message{
+.validation-message {
     font-style: normal;
     font-size: 10px;
     color: #FF1C19;
 }
 
 a {
-    translation: all .2s;
+    transition: all .2s;
 }
 
-a:hover. a:focus, a:active {
+a:hover, a:focus, a:active {
     color: yellow;
     text-decoration: none;
 }

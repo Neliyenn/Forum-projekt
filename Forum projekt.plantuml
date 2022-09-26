@@ -1,0 +1,248 @@
+@startuml
+
+title __FORUM PROJEKT's Class Diagram__\n
+
+  namespace com.neliyenn {
+    class com.neliyenn.ForumApp {
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace config {
+      class com.neliyenn.config.GlobalExceptionHandler {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace config {
+      class com.neliyenn.config.MyAccessDeniedHandler {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace config {
+      class com.neliyenn.config.SpringSecurityConfig {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.BlogController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.BlogErrorController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.CommentController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.HomeController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.LoginController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.PostController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace controller {
+      class com.neliyenn.controller.RegistrationController {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace model {
+      class com.neliyenn.model.Comment {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace model {
+      class com.neliyenn.model.Post {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace model {
+      class com.neliyenn.model.Role {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace model {
+      class com.neliyenn.model.User {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace repository {
+      interface com.neliyenn.repository.CommentRepository {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace repository {
+      interface com.neliyenn.repository.PostRepository {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace repository {
+      interface com.neliyenn.repository.RoleRepository {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace repository {
+      interface com.neliyenn.repository.UserRepository {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      interface com.neliyenn.service.CommentService {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      interface com.neliyenn.service.PostService {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      interface com.neliyenn.service.UserService {
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      namespace impl {
+        class com.neliyenn.service.impl.CommentServiceImp {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      namespace impl {
+        class com.neliyenn.service.impl.PostServiceImp {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace service {
+      namespace impl {
+        class com.neliyenn.service.impl.UserServiceImp {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.neliyenn {
+    namespace util {
+      class com.neliyenn.util.Pager {
+      }
+    }
+  }
+  
+
+  com.neliyenn.config.MyAccessDeniedHandler .up.|> org.springframework.security.web.access.AccessDeniedHandler
+  com.neliyenn.config.SpringSecurityConfig -up-|> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+  com.neliyenn.controller.BlogController o-- com.neliyenn.service.PostService : postService
+  com.neliyenn.controller.BlogController o-- com.neliyenn.service.UserService : userService
+  com.neliyenn.controller.BlogErrorController .up.|> org.springframework.boot.autoconfigure.web.ErrorController
+  com.neliyenn.controller.CommentController o-- com.neliyenn.service.CommentService : commentService
+  com.neliyenn.controller.CommentController o-- com.neliyenn.service.PostService : postService
+  com.neliyenn.controller.CommentController o-- com.neliyenn.service.UserService : userService
+  com.neliyenn.controller.HomeController o-- com.neliyenn.service.PostService : postService
+  com.neliyenn.controller.PostController o-- com.neliyenn.service.PostService : postService
+  com.neliyenn.controller.PostController o-- com.neliyenn.service.UserService : userService
+  com.neliyenn.controller.RegistrationController o-- com.neliyenn.service.UserService : userService
+  com.neliyenn.model.Comment o-- com.neliyenn.model.Post : post
+  com.neliyenn.model.Comment o-- com.neliyenn.model.User : user
+  com.neliyenn.model.Post o-- com.neliyenn.model.User : user
+  com.neliyenn.service.impl.CommentServiceImp .up.|> com.neliyenn.service.CommentService
+  com.neliyenn.service.impl.CommentServiceImp o-- com.neliyenn.repository.CommentRepository : commentRepository
+  com.neliyenn.service.impl.PostServiceImp .up.|> com.neliyenn.service.PostService
+  com.neliyenn.service.impl.PostServiceImp o-- com.neliyenn.repository.PostRepository : postRepository
+  com.neliyenn.service.impl.UserServiceImp .up.|> com.neliyenn.service.UserService
+  com.neliyenn.service.impl.UserServiceImp o-- com.neliyenn.repository.RoleRepository : roleRepository
+  com.neliyenn.service.impl.UserServiceImp o-- com.neliyenn.repository.UserRepository : userRepository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
