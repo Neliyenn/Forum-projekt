@@ -6,7 +6,7 @@
 
     <div class="starter-template panel" th:each="post : ${pager.posts}">
         <div class="panel-heading">
-            <h1><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}">Tytuł</a></h1>
+            <h1 class="title"><a th:text="${post.title}" th:href="@{'/post/' + ${post.id}}">Tytuł</a></h1>
             <div th:text="'Utworzone: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' autor '">
                 Autor
             </div>

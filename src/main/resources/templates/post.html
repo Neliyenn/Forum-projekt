@@ -13,7 +13,7 @@
     <!--Post-->
     <div class="jumbotron">
 
-        <h1 th:text="${post.title}">Tytuł</h1>
+        <h1 class="title" th:text="${post.title}">Tytuł</h1>
         <div th:text="'Utworzone: ' + ${#dates.format(post.createDate, 'dd-MMM-yyyy')} + ' autor '">Autor</div>
         <div><a th:text="${post.user.username}" th:href="@{'/blog/' + ${post.user.username}}">Użytkownik</a></div>
         <h3 th:text="${post.body}">Treść</h3>
