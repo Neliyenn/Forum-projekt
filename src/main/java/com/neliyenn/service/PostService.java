@@ -21,7 +21,7 @@ public interface PostService {
     Page<Post> findByUserOrderedByDatePageable(User user, int page);
 
     /**
-     * Wyszukuje {@link Page} wsrid wszystkich {@link Post}cuporzadkowane wg daty
+     * Wyszukuje {@link Page} wsrod wszystkich {@link Post} uporzadkowane wg daty
      */
     Page<Post> findAllOrderedByDatePageable(int page);
 
