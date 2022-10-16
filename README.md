@@ -4,6 +4,8 @@
 
 Aplikacja forum podróżniczego została stworzona na potrzeby przedmiotu Programowanie aplikacji back-endowych, aby pokazać praktyczne zastosowanie języka JAVA w połączeniu z dostępem i zarządzaniem bazą danych.   
 
+Aplikacja przeznaczona jest do użytkowania przez osoby dzielące podobne zainteresowania, które pragną podzielić się swoimi doświadczeniami z szerszą społecznością, bądź szukają odpowiedzi w danej dziedzinie. Po zalogowaniu użytkownicy zyskują możliwość zamieszczania oraz komentowania postów innych użytkowników. Każdy może założyć konto na Forum podając swoje imię, nazwisko, email oraz login i hasło. Niezalogowani użytkownicy mogą jedynie przeglądać i czytać posty oraz komentarze napisane przez innych użytkowników.
+
 Aplikacja została napisana z wykorzystaniem Spring Boot, Spring Security, Thymeleaf, Spring Data JPA oraz  Spring Data REST. Za szatę graficzną odpowiada Thymeleaf. Aplikacja zawiera funkcjonalności rejestracji i logowania. 
 
 
