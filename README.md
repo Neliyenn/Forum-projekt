@@ -14,4 +14,7 @@ Folder src/resources/ zawiera plik konfiguracyjny ```application.properties``` d
 
 ###Instrukcja uruchomienia
 Otwórz aplikację w programie IntelliJ. Znajdź plik „ForumApp” i otwórz go. Uruchom aplikację klikając zielony „trójkąt” w 7 linii.
+
 ![screen1](https://user-images.githubusercontent.com/65779777/196040341-af762052-6077-4f9c-8303-039b4f1f4bad.png)
+
+Wpisz w przeglądarce adres ```http://localhost:port/home``` . W miejsce słowa „port” wstaw wartość umieszczoną w pliku ```application.properties```.
