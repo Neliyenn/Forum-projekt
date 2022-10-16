@@ -12,3 +12,5 @@ Aplikacja została napisana z wykorzystaniem Spring Boot, Spring Security, Thyme
 ### Pliki konfiguracyjne
 Folder src/resources/ zawiera plik konfiguracyjny ```application.properties``` dla aplikacji. Można w nim zmienić port oraz login i hasło konta administratora.
 
+###Instrukcja uruchomienia
+Otwórz aplikację w programie IntelliJ. Znajdź plik „ForumApp” i otwórz go. Uruchom aplikację klikając zielony „trójkąt” w 7 linii.
