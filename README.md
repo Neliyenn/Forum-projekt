@@ -19,7 +19,7 @@ Otwórz aplikację w programie IntelliJ. Znajdź plik „ForumApp” i otwórz g
 
 Wpisz w przeglądarce adres ```http://localhost:port/home``` . W miejsce słowa ```port``` wstaw wartość umieszczoną w pliku **application.properties**.
 
-![port](https://user-images.githubusercontent.com/65779777/196040511-00f94862-4a70-4ee3-a3eb-dd62c0cec1a9.png)
+![port](https://user-images.githubusercontent.com/65779777/196040879-a1144296-034f-4e9d-b257-69b1d45739aa.png)
 
 ### Interfejs webowy bazy danych
 W oknie przeglądarki wpisz adres ```http://localhost:port/h2-console```. W miejsce słowa ```port``` wstaw numer portu aplikacji. W pliku **application.properties** znajdują się dane dotyczące logowania do interfejsu bazy danych. 
