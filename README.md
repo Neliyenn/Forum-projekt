@@ -23,6 +23,12 @@ Wpisz w przeglądarce adres ```http://localhost:port/home``` . W miejsce słowa 
 
 ![port](https://user-images.githubusercontent.com/65779777/196040935-0aec0d11-cb46-48e6-b55c-9781ca479902.png)
 
+Możesz zalogować się na konto jednego z trzech istniejących użytkowników: 
+
+Login: **szymko**
+
+Hasło: **password**
+
 ### Interfejs webowy bazy danych
 W oknie przeglądarki wpisz adres ```http://localhost:port/h2-console```. W miejsce słowa ```port``` wstaw numer portu aplikacji. W pliku **application.properties** znajdują się dane dotyczące logowania do interfejsu bazy danych. 
 
@@ -32,6 +38,6 @@ W polu **JDBC URL** wstaw dane z linii 6.
 
 Zaloguj się i nawiąż połączenie:
 
-Username: **sa**
+User Name: **sa**
 
 Password: 
