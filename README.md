@@ -27,6 +27,9 @@ W oknie przeglądarki wpisz adres ```http://localhost:port/h2-console```. W miej
 ![h2](https://user-images.githubusercontent.com/65779777/196040648-23efd929-fc54-4bff-9425-466cfb3e9e39.png)
 
 W polu **JDBC URL** wstaw dane z linii 6. 
+
 Zaloguj się i nawiąż połączenie:
+
 Username: **sa**
+
 Password: 
